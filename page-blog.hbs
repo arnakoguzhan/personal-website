@@ -1,0 +1,107 @@
+{{!< default}}
+{{#if @blog.cover_image}}{{#contentFor "special_body_class"}}gh-head-transparent{{/contentFor}}{{/if}}
+
+{{!-- <header class="site-header outer {{#if @blog.cover_image}}" style="background-image: url({{@blog.cover_image}}){{else}}no-cover{{/if}}">
+    <div class="inner">
+        <div class="site-header-content">
+            <h1 class="site-title">
+                {{#if @blog.logo}}
+                    <img class="site-logo" src="{{@blog.logo}}" alt="{{@blog.title}}" />
+                {{else}}
+                    {{@blog.title}}
+                {{/if}}
+            </h1>
+            <h2 class="site-description">{{@blog.description}}</h2>
+        </div>
+    </div>
+</header> --}}
+
+<main id="site-main" class="site-main outer">
+    <div class="highlight-feed">
+        {{#if @blog.cover_image}}<div class="highlight-feed-cover" style="background-image: url({{@blog.cover_image}})"></div>{{/if}}
+
+        <div class="inner">
+
+            <div class="site-section">
+                <div class="post-feed highlight-feed-primary">
+                    {{#get "posts" filter="featured:true" include="authors,tags" limit="2"}}
+                    {{#foreach posts}}
+                        {{> "post-card"}}
+                    {{/foreach}}
+                    {{/get}}
+                </div>
+                {{#get "posts" filter="featured:true" include="authors,tags" limit="4"}}
+                <div class="post-feed highlight-feed-secondary">
+                    {{#foreach posts}}
+                        {{> "post-card"}}
+                    {{/foreach}}
+                </div>
+                {{/get}}
+            </div>
+
+        </div>
+
+    </div>
+
+    {{!-- <div class="breakout-section">
+        <div class="inner">
+            CTA
+        </div>
+    </div> --}}
+
+    <div class="inner">
+
+        {{#get "posts" filter="tag:new-tip+featured:false" include="authors,tags" limit="3"}}
+        <div class="site-section">
+            <header class="site-section-header">
+                <h2 class="site-section-title">Code News & Tips</h2>
+                <a class="site-section-morelink" href="{{@blog.url}}/tag/new-tip/">See more {{> "icons/arrow-right-small"}}</a>
+            </header>
+            <div class="post-feed">
+                {{#foreach posts}}
+                    {{> "post-card"}}
+                {{/foreach}}
+            </div>
+        </div>
+        {{/get}}
+
+        {{#get "posts" filter="tag:tutorials+featured:false" include="authors,tags" limit="3"}}
+        <div class="site-section">
+            <header class="site-section-header">
+                <h2 class="site-section-title">Tutorials</h2>
+                <a class="site-section-morelink" href="{{@blog.url}}/tag/tutorials/">See more {{> "icons/arrow-right-small"}}</a>
+            </header>
+            <div class="post-feed">
+                {{#foreach posts}}
+                    {{> "post-card"}}
+                {{/foreach}}
+            </div>
+        </div>
+        {{/get}}
+
+
+        {{#get "posts" filter="tag:open-source+featured:false" include="authors,tags" limit="3"}}
+        <div class="site-section">
+            <header class="site-section-header">
+                <h2 class="site-section-title">Open Source</h2>
+                <a class="site-section-morelink" href="{{@blog.url}}/tag/open-source/">See more {{> "icons/arrow-right-small"}}</a>
+            </header>
+            <div class="post-feed">
+                {{#foreach posts}}
+                    {{> "post-card"}}
+                {{/foreach}}
+            </div>
+        </div>
+        {{/get}}
+
+
+        {{!-- <div class="post-feed">
+            {{#foreach posts}}
+
+                {{> "post-card"}}
+
+            {{/foreach}}
+        </div> --}}
+
+    </div>
+</main>
